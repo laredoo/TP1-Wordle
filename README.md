@@ -2,10 +2,10 @@
 
 ### Membros do Grupo:
 
-- Alan Augusto Martins Campos, 2021040121, @alan-augusto;
-- Davi Esondem Menezes Brito, 2021039808, @daviembrito;
-- Lucas Rocha Laredo, 2021040121, @laredoo;
-- Marcos Lott de Araújo, 2021039786; @MarcosLottDito;
+- Alan Augusto Martins Campos, 2021040121, [@alan-augusto](https://github.com/alan-augusto);
+- Davi Esondem Menezes Brito, 2021039808, [@daviembrito](https://github.com/daviembrito);
+- Lucas Rocha Laredo, 2021040121, [@laredoo](https://github.com/laredoo);
+- Marcos Lott de Araújo, 2021039786; [@MarcosLottDito](https://github.com/MarcosLottDito);
 
 ### Sistema:
 
