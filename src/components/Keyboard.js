@@ -1,21 +1,17 @@
-import React, { useCallback, useEffect, useContext } from "react";
+import React, { useCallback, useEffect, useContext, useMemo } from "react";
 import Key from "./Key";
 import { AppContext } from "../App";
 
 function Keyboard() {
-  const keys1 = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"];
-  const keys2 = ["A", "S", "D", "F", "G", "H", "J", "K", "L"];
-  const keys3 = ["Z", "X", "C", "V", "B", "N", "M"];
+  const { keys1, keys2, keys3 } = useMemo(() => {
+    const keys1 = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"];
+    const keys2 = ["A", "S", "D", "F", "G", "H", "J", "K", "L"];
+    const keys3 = ["Z", "X", "C", "V", "B", "N", "M"];
+    return { keys1, keys2, keys3 };
+  }, []);
 
-  const {
-    board,
-    disabledLetters,
-    currAttempt,
-    gameOver,
-    onSelectLetter,
-    onEnter,
-    onDelete,
-  } = useContext(AppContext);
+  const { disabledLetters, gameOver, onSelectLetter, onEnter, onDelete } =
+    useContext(AppContext);
 
   const handleKeyboard = useCallback(
     (event) => {
@@ -42,7 +38,7 @@ function Keyboard() {
         });
       }
     },
-    [currAttempt]
+    [gameOver, keys1, keys2, keys3, onDelete, onEnter, onSelectLetter]
   );
   useEffect(() => {
     document.addEventListener("keydown", handleKeyboard);
