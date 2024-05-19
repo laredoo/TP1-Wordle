@@ -13,7 +13,7 @@ const loss = {
 };
 
 const win = {
-  gameOver: false,
+  gameOver: true,
   guessedWord: true,
 };
 
@@ -42,7 +42,10 @@ function App() {
     for (let i = 0; i < 5; i++) {
       currWord += board[currAttempt.attempt][i];
     }
-    if (wordSet.has(currWord.toLowerCase())) {
+
+    currWord = currWord.toLowerCase();
+
+    if (wordSet.has(currWord)) {
       setCurrAttempt({ attempt: currAttempt.attempt + 1, letter: 0 });
     } else {
       alert("Word not found");
