@@ -7,6 +7,16 @@ import GameOver from "./components/GameOver";
 
 export const AppContext = createContext();
 
+const loss = {
+  gameOver: true,
+  guessedWord: false,
+};
+
+const win = {
+  gameOver: false,
+  guessedWord: true,
+};
+
 function App() {
   const [board, setBoard] = useState(boardDefault);
   const [currAttempt, setCurrAttempt] = useState({ attempt: 0, letter: 0 });
@@ -39,12 +49,12 @@ function App() {
     }
 
     if (currWord === correctWord) {
-      setGameOver({ gameOver: true, guessedWord: true });
+      setGameOver(win);
       return;
     }
-    console.log(currAttempt);
+
     if (currAttempt.attempt === 5) {
-      setGameOver({ gameOver: true, guessedWord: false });
+      setGameOver(loss);
       return;
     }
   };
