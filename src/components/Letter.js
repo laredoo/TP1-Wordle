@@ -5,18 +5,27 @@ function Letter({ letterPos, attemptVal }) {
   const { board, setDisabledLetters, currAttempt, correctWord } =
     useContext(AppContext);
   const letter = board[attemptVal][letterPos];
-  const correct = correctWord.toUpperCase()[letterPos] === letter;
-  const almost =
-    !correct && letter !== "" && correctWord.toUpperCase().includes(letter);
-  const letterState =
-    currAttempt.attempt > attemptVal &&
-    (correct ? "correct" : almost ? "almost" : "error");
+
+  const isCorrect = isCorrectLetter(correctWord, letter, letterPos);
+  const isAlmostCorrect = isAlmostCorrectLetter(correctWord, letter, isCorrect);
+  const letterState = setLetterState(
+    currAttempt,
+    attemptVal,
+    isCorrect,
+    isAlmostCorrect
+  );
 
   useEffect(() => {
-    if (letter !== "" && !correct && !almost) {
+    if (!isEmpty(letter) && !isCorrect && !isAlmostCorrect) {
       setDisabledLetters((prev) => [...prev, letter]);
     }
-  }, [almost, correct, currAttempt.attempt, letter, setDisabledLetters]);
+  }, [
+    isAlmostCorrect,
+    isCorrect,
+    currAttempt.attempt,
+    letter,
+    setDisabledLetters,
+  ]);
   return (
     <div className="letter" id={letterState}>
       {letter}
@@ -24,5 +33,35 @@ function Letter({ letterPos, attemptVal }) {
   );
 }
 
-export default Letter;
+function isCorrectLetter(correctWord, letter, letterPos) {
+  const correctLetter = correctWord.charAt(letterPos);
 
+  return correctLetter.toUpperCase() === letter;
+}
+
+function isAlmostCorrectLetter(correctWord, letter, isCorrect) {
+  const isLetterEmpty = isEmpty(letter);
+  const correctContainsLetter = correctWord.toUpperCase().includes(letter);
+
+  return !isCorrect && !isLetterEmpty && correctContainsLetter;
+}
+
+function isEmpty(letter) {
+  return letter === "";
+}
+
+function setLetterState(currAttempt, attemptVal, isCorrect, isAlmostCorrect) {
+  const hasAttempted = currAttempt.attempt > attemptVal;
+
+  if (!hasAttempted) return false;
+
+  const resultStatus = isCorrect
+    ? "correct"
+    : isAlmostCorrect
+    ? "almost"
+    : "error";
+
+  return resultStatus;
+}
+
+export default Letter;
