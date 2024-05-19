@@ -13,7 +13,7 @@ const loss = {
 };
 
 const win = {
-  gameOver: false,
+  gameOver: true,
   guessedWord: true,
 };
 
