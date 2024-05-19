@@ -53,7 +53,7 @@ function isEmpty(letter) {
 function setLetterState(currAttempt, attemptVal, isCorrect, isAlmostCorrect) {
   const hasAttempted = currAttempt.attempt > attemptVal;
 
-  if (!hasAttempted) return false;
+  if (!hasAttempted) return undefined;
 
   const resultStatus = isCorrect
     ? "correct"

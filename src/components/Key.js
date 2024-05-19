@@ -15,6 +15,9 @@ function Key({ keyVal, bigKey, disabled }) {
       onSelectLetter(keyVal);
     }
   };
+
+  disabled = disabled ? disabled : undefined;
+
   return (
     <div
       className="key"
