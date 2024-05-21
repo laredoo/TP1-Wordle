@@ -28,7 +28,7 @@ function App() {
     guessedWord: false,
   });
 
-  const onEnter = () => {
+  function onEnter() {
     if (currAttempt.letter !== 5) return;
 
     let currWord = "";
@@ -53,17 +53,17 @@ function App() {
       setGameOver(LOSS);
       return;
     }
-  };
+  }
 
-  const onDelete = () => {
+  function onDelete() {
     if (currAttempt.letter === 0) return;
     const newBoard = [...board];
     newBoard[currAttempt.attempt][currAttempt.letter - 1] = "";
     setBoard(newBoard);
     setCurrAttempt({ ...currAttempt, letter: currAttempt.letter - 1 });
-  };
+  }
 
-  const onSelectLetter = (key) => {
+  function onSelectLetter(key) {
     if (currAttempt.letter > 4) return;
     const newBoard = [...board];
     newBoard[currAttempt.attempt][currAttempt.letter] = key;
@@ -72,7 +72,7 @@ function App() {
       attempt: currAttempt.attempt,
       letter: currAttempt.letter + 1,
     });
-  };
+  }
 
   useEffect(() => {
     generateWordSet().then((words) => {

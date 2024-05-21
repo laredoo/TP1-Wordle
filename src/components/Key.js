@@ -5,7 +5,7 @@ function Key({ keyVal, bigKey, disabled }) {
   const { gameOver, onSelectLetter, onDelete, onEnter } =
     useContext(AppContext);
 
-  const selectLetter = () => {
+  function selectLetter() {
     if (gameOver.gameOver) return;
     if (keyVal === "ENTER") {
       onEnter();
@@ -14,7 +14,7 @@ function Key({ keyVal, bigKey, disabled }) {
     } else {
       onSelectLetter(keyVal);
     }
-  };
+  }
 
   disabled = disabled ? disabled : undefined;
 
