@@ -1,24 +1,24 @@
 import "./App.css";
 import Board from "./components/Board";
 import Keyboard from "./components/Keyboard";
-import { boardDefault, generateWordSet } from "./Words";
-import React, { useState, createContext, useEffect } from "react";
 import GameOver from "./components/GameOver";
+import { DEFAULT_BOARD, generateWordSet } from "./Words";
+import React, { useState, createContext, useEffect } from "react";
 
 export const AppContext = createContext();
 
-const loss = {
+const LOSS = {
   gameOver: true,
   guessedWord: false,
 };
 
-const win = {
+const WIN = {
   gameOver: true,
   guessedWord: true,
 };
 
 function App() {
-  const [board, setBoard] = useState(boardDefault);
+  const [board, setBoard] = useState(DEFAULT_BOARD);
   const [currAttempt, setCurrAttempt] = useState({ attempt: 0, letter: 0 });
   const [wordSet, setWordSet] = useState(new Set());
   const [correctWord, setCorrectWord] = useState("");
@@ -27,13 +27,6 @@ function App() {
     gameOver: false,
     guessedWord: false,
   });
-
-  useEffect(() => {
-    generateWordSet().then((words) => {
-      setWordSet(words.wordSet);
-      setCorrectWord(words.todaysWord);
-    });
-  }, []);
 
   const onEnter = () => {
     if (currAttempt.letter !== 5) return;
@@ -48,16 +41,16 @@ function App() {
     if (wordSet.has(currWord)) {
       setCurrAttempt({ attempt: currAttempt.attempt + 1, letter: 0 });
     } else {
-      alert("Word not found");
+      alert("Palavra não existe");
     }
 
     if (currWord === correctWord) {
-      setGameOver(win);
+      setGameOver(WIN);
       return;
     }
 
     if (currAttempt.attempt === 5) {
-      setGameOver(loss);
+      setGameOver(LOSS);
       return;
     }
   };
@@ -81,24 +74,32 @@ function App() {
     });
   };
 
+  useEffect(() => {
+    generateWordSet().then((words) => {
+      setWordSet(words.wordSet);
+      setCorrectWord(words.todaysWord);
+    });
+  }, []);
+
   return (
     <div className="App">
       <nav>
         <h1>Wordle</h1>
+        <h2>{correctWord}</h2>
       </nav>
       <AppContext.Provider
         value={{
           board,
-          setBoard,
-          currAttempt,
-          setCurrAttempt,
-          correctWord,
-          onSelectLetter,
-          onDelete,
-          onEnter,
-          setDisabledLetters,
-          disabledLetters,
           gameOver,
+          currAttempt,
+          correctWord,
+          disabledLetters,
+          onEnter,
+          onDelete,
+          setBoard,
+          setCurrAttempt,
+          onSelectLetter,
+          setDisabledLetters,
         }}
       >
         <div className="game">
