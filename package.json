@@ -6,6 +6,7 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",
     "@testing-library/user-event": "^13.2.1",
+    "cross-fetch": "^4.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "5.0.0",
@@ -14,7 +15,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "vitest",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -35,5 +36,8 @@
       "last 1 safari version"
     ]
   },
-  "packageManager": "yarn@3.3.0+sha512.16136ce2bbe4239c67bdb29c7af54918e0d8ef3029076bc4f30d32f5cdc35b6a081d8bff0ed404a32dc3da45f01bd7e0b9d12e83f1fc42638a3adc77115fafad"
+  "packageManager": "yarn@3.3.0+sha512.16136ce2bbe4239c67bdb29c7af54918e0d8ef3029076bc4f30d32f5cdc35b6a081d8bff0ed404a32dc3da45f01bd7e0b9d12e83f1fc42638a3adc77115fafad",
+  "devDependencies": {
+    "vitest": "^1.6.0"
+  }
 }
