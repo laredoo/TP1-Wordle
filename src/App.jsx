@@ -81,6 +81,8 @@ function App() {
     });
   }, []);
 
+  console.log("correctWord: ", correctWord);
+
   return (
     <div className="App">
       <nav>

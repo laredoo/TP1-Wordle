@@ -16,14 +16,10 @@ function Key({ keyVal, bigKey, disabled }) {
     }
   }
 
-  disabled = disabled ? disabled : undefined;
+  const style = bigKey ? "big" : disabled ? "disabled" : undefined;
 
   return (
-    <div
-      className="key"
-      id={bigKey ? "big" : disabled && "disabled"}
-      onClick={selectLetter}
-    >
+    <div className={!!style ? `key ${style}` : "key"} onClick={selectLetter}>
       {keyVal}
     </div>
   );

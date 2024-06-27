@@ -33,7 +33,9 @@ function Letter({ letterPos, attemptVal }) {
   }, [currAttempt.attempt]);
 
   return (
-    <div className="letter" id={letterAppearance}>
+    <div
+      className={!!letterAppearance ? `letter ${letterAppearance}` : "letter"}
+    >
       {letter}
     </div>
   );
